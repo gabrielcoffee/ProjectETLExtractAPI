@@ -1,18 +1,18 @@
 # ProjectETLExtractAPI
 
-Projeto de ETL (Extract, Transform, Load) para extração de dados da API Coinbase usando Python.
+Projeto de ETL (Extract, Transform, Load) para extração de dados da API ChatGPT usando Python.
 
 ## Descrição
 
-Este projeto implementa um pipeline ETL para extrair dados da API Coinbase, transformá-los em um formato adequado e carregá-los em um destino específico. O projeto utiliza Python e a biblioteca `requests` para realizar as requisições HTTP à API.
+Este projeto implementa um pipeline ETL para extrair dados da API ChatGPT, transformá-los em um formato adequado e carregá-los em um destino específico. O projeto utiliza Python e a biblioteca `requests` para realizar as requisições HTTP à API do OpenAI.
 
 ## Requisitos
 
 - Python 3.8+
 - Bibliotecas Python:
   - requests
-  - pandas
   - python-dotenv
+  - json
 
 ## Instalação
 
@@ -35,53 +35,35 @@ pip install -r requirements.txt
 
 ## Configuração
 
-1. Crie um arquivo `.env` na raiz do projeto com suas credenciais da API Coinbase:
+1. Crie um arquivo `.env` na raiz do projeto com sua chave da API OpenAI:
 ```
-COINBASE_API_KEY=sua_chave_aqui
-COINBASE_API_SECRET=seu_secreto_aqui
+OPEN_AI_API_KEY=sua_chave_aqui
 ```
 
 ## Estrutura do Projeto
 
 ```
 ProjectETLExtractAPI/
-├── src/
-│   ├── extract/
-│   │   └── coinbase_extractor.py
-│   ├── transform/
-│   │   └── data_transformer.py
-│   └── load/
-│       └── data_loader.py
-├── tests/
+├── exemplos/
+│   └── exemplo_04.py
+├── env/
 ├── .env
-├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
 ## Uso
 
-1. Execute o pipeline ETL completo:
+1. Execute o exemplo de integração com a API ChatGPT:
 ```bash
-python src/main.py
-```
-
-2. Para executar etapas específicas:
-```bash
-# Apenas extração
-python src/extract/coinbase_extractor.py
-
-# Apenas transformação
-python src/transform/data_transformer.py
-
-# Apenas carregamento
-python src/load/data_loader.py
+python exemplos/exemplo_04.py
 ```
 
 ## Funcionalidades
 
-- Extração de dados de criptomoedas da API Coinbase
+- Extração de dados da API ChatGPT
 - Transformação dos dados em formato adequado para análise
-- Carregamento dos dados processados em destino escolhido
+- Carregamento dos dados processados
 - Tratamento de erros e logging
 - Configuração via variáveis de ambiente
 
