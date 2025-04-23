@@ -1,3 +1,4 @@
+import time
 import requests
 from tinydb import TinyDB
 from datetime import datetime
@@ -30,6 +31,8 @@ def save_data_tinydb(data, db_name="bitcoin.json"):
     print("Dados salvos com sucesso!")
 
 if __name__ == '__main__':
-    data = extract()
-    transformed_data = transform_cripto_data(data)
-    save_data_tinydb(transformed_data)
+    while True:
+        data = extract()
+        transformed_data = transform_cripto_data(data)
+        save_data_tinydb(transformed_data)
+        time.sleep(15)
