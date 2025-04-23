@@ -1,18 +1,21 @@
 # ProjectETLExtractAPI
 
-Projeto de ETL (Extract, Transform, Load) para extração de dados da API ChatGPT usando Python.
+Projeto de ETL (Extract, Transform, Load) para monitoramento de preços de criptomoedas em tempo real.
 
 ## Descrição
 
-Este projeto implementa um pipeline ETL para extrair dados da API ChatGPT, transformá-los em um formato adequado e carregá-los em um destino específico. O projeto utiliza Python e a biblioteca `requests` para realizar as requisições HTTP à API do OpenAI.
+Este projeto implementa um pipeline ETL para monitorar e armazenar preços de criptomoedas em tempo real. O sistema extrai dados da API Coinbase, transforma os dados em um formato adequado e os armazena em um banco de dados PostgreSQL. O projeto utiliza Python e implementa logging avançado com Logfire para monitoramento.
 
 ## Requisitos
 
 - Python 3.8+
+- PostgreSQL
 - Bibliotecas Python:
   - requests
   - python-dotenv
-  - json
+  - sqlalchemy
+  - logfire
+  - logging
 
 ## Instalação
 
@@ -35,37 +38,52 @@ pip install -r requirements.txt
 
 ## Configuração
 
-1. Crie um arquivo `.env` na raiz do projeto com sua chave da API OpenAI:
+1. Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 ```
-OPEN_AI_API_KEY=sua_chave_aqui
+POSTGRES_USER=seu_usuario
+POSTGRES_PASSWORD=sua_senha
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=nome_do_banco
 ```
+
+2. Certifique-se de que o PostgreSQL está configurado e rodando
 
 ## Estrutura do Projeto
 
 ```
 ProjectETLExtractAPI/
-├── exemplos/
-│   └── exemplo_04.py
+├── src/
+│   ├── pipeline_04.py
+│   └── database.py
 ├── env/
 ├── .env
 ├── .gitignore
 └── README.md
 ```
 
-## Uso
-
-1. Execute o exemplo de integração com a API ChatGPT:
-```bash
-python exemplos/exemplo_04.py
-```
-
 ## Funcionalidades
 
-- Extração de dados da API ChatGPT
-- Transformação dos dados em formato adequado para análise
-- Carregamento dos dados processados
-- Tratamento de erros e logging
-- Configuração via variáveis de ambiente
+- Extração de preços de criptomoedas da API Coinbase
+- Transformação dos dados em formato estruturado
+- Armazenamento em banco de dados PostgreSQL
+- Monitoramento e logging com Logfire
+- Execução contínua com intervalo de 15 segundos
+- Tratamento de erros robusto
+
+## Uso
+
+1. Configure o arquivo `.env` com suas credenciais do PostgreSQL
+2. Execute o pipeline:
+```bash
+python src/pipeline_04.py
+```
+
+O pipeline irá:
+- Criar a tabela necessária no banco de dados
+- Iniciar o monitoramento de preços
+- Armazenar os dados a cada 15 segundos
+- Registrar logs de todas as operações
 
 ## Contribuição
 
